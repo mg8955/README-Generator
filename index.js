@@ -1,9 +1,7 @@
 const inquirer = require('inquirer');
-const fs = require('fs');
 const questionsImport = require('./questions.js');
 const questions = questionsImport.questions;
 const generateMarkdown = require('./generateMarkdown.js');
-
 
 init();
 
@@ -16,7 +14,6 @@ inquirer.prompt(questions)
             badge: '',
             url: ''
         };
-        console.log (licenseInfo.license);
         generateMarkdown.renderLicense(licenseInfo);
         generateMarkdown.generateMarkdown(data, licenseInfo);
     }).catch((err) => {

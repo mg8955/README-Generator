@@ -1,13 +1,13 @@
 # README Generator
  ## Description
  ---
- An app that generates a README.md file based on user input.
+ This app generates a README.md file based on user input.
  ## Installation
  ---
  Use npm install to install dependencies.
  ## Usage
  ---
- Please check your grammar and spelling!
+ Please check your spelling and grammar.
  ## License
  ---
  ![](https://img.shields.io/badge/license-MIT-brightgreen) [Click here for more information about the MIT license.](https://choosealicense.com/licenses/mit/)
