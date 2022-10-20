@@ -1,12 +1,7 @@
 const fs = require('fs');
 
-function renderLicense(license) {
-    const licenseInfo = {
-      badge: '',
-      url: ''
-        };
-
-    switch(license) {   
+function renderLicense(licenseInfo) {
+    switch(licenseInfo.license) {   
       case 'MIT' :
           licenseInfo.badge = 'https://img.shields.io/badge/license-MIT-brightgreen';
           licenseInfo.url = 'https://choosealicense.com/licenses/mit/';
@@ -17,7 +12,7 @@ function renderLicense(license) {
           licenseInfo.url = 'https://choosealicense.com/licenses/gpl-3.0/';
           console.log(licenseInfo.url);
           break;
-      case 'Apache License 2.0' :
+      case 'Apache 2.0' :
           licenseInfo.badge = 'https://img.shields.io/badge/license-Apache%20License%202.0-brightgreen';
           licenseInfo.url = 'https://choosealicense.com/licenses/apache-2.0/';
           console.log(licenseInfo.url);
@@ -32,10 +27,12 @@ function renderLicense(license) {
           licenseInfo.url = '';
           break; 
       }
+      return licenseInfo;
     }
 
-function generateMarkdown(data) {
-  var markdownText = `# ${data.title}\n ---\n ## Description\n ---\n ${data.description}\n ## Installation\n ---\n Use ${data.dependCmd} to install dependencies.\n ## Usage\n ---\n ${data.usage}\n ## License\n ---\n ${data.license}\n ## How to Contribute\n ---\n ${data.contributions}\n ## Tests\n ---\n Run tests using the ${data.testsCmd} command.\n ## Contact Me\n ---\n Github: ${data.ghUserName}\n Email: ${data.emailAddress}`;
+function generateMarkdown(data, licenseInfo) {
+  console.log(licenseInfo);
+  var markdownText = `# ${data.title}\n ## Description\n ---\n ${data.description}\n ## Installation\n ---\n Use ${data.dependCmd} to install dependencies.\n ## Usage\n ---\n ${data.usage}\n ## License\n ---\n ![](${licenseInfo.badge}) [Click here for more information about the ${licenseInfo.license} license.](${licenseInfo.url})\n \n ## How to Contribute\n ---\n ${data.contributions}\n ## Tests\n ---\n Run tests using the ${data.testsCmd} command.\n ## Contact Me\n ---\n Github: [${data.ghUserName}](https://github.com/mg8955)\nEmail: ${data.emailAddress}`;
   
   fs.writeFile('README.md', markdownText, (err) =>
     err ? console.error(err) : console.log('Success!'));
