@@ -1,23 +1,47 @@
-// TODO: Create a function that returns a license badge based on which license is passed in
-// If there is no license, return an empty string
-// function renderLicenseBadge(license) {}
+const fs = require('fs');
 
-// // TODO: Create a function that returns the license link
-// // If there is no license, return an empty string
-// function renderLicenseLink(license) {}
+function renderLicense(license) {
+    const licenseInfo = {
+      badge: '',
+      url: ''
+        };
 
-// // TODO: Create a function that returns the license section of README
-// // If there is no license, return an empty string
-// function renderLicenseSection(license) {}
+    switch(license) {   
+      case 'MIT' :
+          licenseInfo.badge = 'https://img.shields.io/badge/license-MIT-brightgreen';
+          licenseInfo.url = 'https://choosealicense.com/licenses/mit/';
+          console.log(licenseInfo.url);
+          break;
+      case 'GNU GPLv3' : 
+          licenseInfo.badge = 'https://img.shields.io/badge/license-GNU%20GPLv3-brightgreen';
+          licenseInfo.url = 'https://choosealicense.com/licenses/gpl-3.0/';
+          console.log(licenseInfo.url);
+          break;
+      case 'Apache License 2.0' :
+          licenseInfo.badge = 'https://img.shields.io/badge/license-Apache%20License%202.0-brightgreen';
+          licenseInfo.url = 'https://choosealicense.com/licenses/apache-2.0/';
+          console.log(licenseInfo.url);
+          break;
+      case 'ISC' :
+          licenseInfo.badge = 'https://img.shields.io/badge/license-ISC-brightgreen';
+          licenseInfo.url = 'https://choosealicense.com/licenses/isc/';
+          console.log(licenseInfo.url);
+          break;
+      default:
+          licenseInfo.badge = '';
+          licenseInfo.url = '';
+          break; 
+      }
+    }
 
-// TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
-  return `# ${data.title}
-## ${data.license}
-`;
+  var markdownText = `# ${data.title}\n ---\n ## Description\n ---\n ${data.description}\n ## Installation\n ---\n Use ${data.dependCmd} to install dependencies.\n ## Usage\n ---\n ${data.usage}\n ## License\n ---\n ${data.license}\n ## How to Contribute\n ---\n ${data.contributions}\n ## Tests\n ---\n Run tests using the ${data.testsCmd} command.\n ## Contact Me\n ---\n Github: ${data.ghUserName}\n Email: ${data.emailAddress}`;
+  
+  fs.writeFile('README.md', markdownText, (err) =>
+    err ? console.error(err) : console.log('Success!'));
 }
 
-module.exports = generateMarkdown;
-
-
-//switch case for license type?
+module.exports = {
+  generateMarkdown,
+  renderLicense
+};
