@@ -27,7 +27,7 @@ function renderLicense(licenseInfo) {
     }
 
 function generateMarkdown(data, licenseInfo) {
-  var markdownText = `# ${data.title}\n ## Description\n ---\n ${data.description}\n ## Installation\n ---\n Use ${data.dependCmd} to install dependencies.\n ## Usage\n ---\n ${data.usage}\n ## License\n ---\n ![](${licenseInfo.badge}) [Click here for more information about the ${licenseInfo.license} license.](${licenseInfo.url})\n \n ## How to Contribute\n ---\n ${data.contributions}\n ## Tests\n ---\n Run tests using the ${data.testsCmd} command.\n ## Contact Me\n ---\n Github: [${data.ghUserName}](https://github.com/mg8955)\nEmail: ${data.emailAddress}\n`;
+  var markdownText = `# ${data.title}\n ## Description\n ---\n ${data.description}\n ##Table of Contents\n [Installation](#installation)\n [Usage](#usage)\n [License](#license)\n [How to Contribute](#contribute)\n [Tests](#tests)\n [Contact Me](#contact)\n ## Installation\n ---\n Use ${data.dependCmd} to install dependencies.\n ## Usage\n ---\n ${data.usage}\n ## License\n ---\n ![](${licenseInfo.badge}) [Click here for more information about the ${licenseInfo.license} license.](${licenseInfo.url})\n \n ## How to Contribute\n ---\n ${data.contributions}\n ## Tests\n ---\n Run tests using the ${data.testsCmd} command.\n ## Contact Me\n ---\n Github: [${data.ghUserName}](https://github.com/mg8955)\nEmail: ${data.emailAddress}\n`;
   
   fs.writeFile('README.md', markdownText, (err) =>
     err ? console.error(err) : console.log('Success!'));
